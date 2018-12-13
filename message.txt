@@ -1,2 +1,7 @@
 Let's get this bread
 Test from Stephen Andryc (12/13/18 12:37pm)
+
+To do list:
+-Get motivated
+-Do stats.ejs
+-Figure out pushing and pulling from csv files

@@ -48,6 +48,7 @@ app.get('/rules', function(request, response){
 app.get('/stats', function(request, response){
   //load the csv
   var users_file=fs.readFileSync('data/users.csv','utf8');
+  fs.writeFile('data/text.txt','Message');//replaces first argument (file) content with second argument (text) content
   console.log(users_file);
   //parse the csv
   var rows = users_file.split('\n');
