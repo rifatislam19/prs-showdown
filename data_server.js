@@ -22,11 +22,39 @@ app.get('/', function(request, response){
 
 app.get('/login', function(request, response){
   var user_data={
-      name: request.query.player_name
+      name: request.query.player_name,
+      password: request.query.player_password
   };
-  response.status(200);
-  response.setHeader('Content-Type', 'text/html')
-  response.render('game', {user:user_data});
+  var users_file=fs.readFileSync('data/users.csv','utf8');
+  var rows = users_file.split('\n');
+  var user_info = [];
+  for(var i=1; i<rows.length-1; i++){
+    var user_d = rows[i].split(',');
+    var user = {};
+    user["name"] = user_d[0];
+    user["password"] = user_d[7];
+    user_info.push(user);
+  }
+  for(i=0;i<user_info.length;i++){
+    if(user_info[i]["name"]=user_data["name"]){
+
+      f(user_info[i]["password"]=user_data["password"]){
+        response.status(200);
+        response.setHeader('Content-Type', 'text/html')
+        response.render('game', {user:user_data});
+      }
+
+      else{
+        //error message
+      }
+
+    }
+    else{
+      //create new user and send to csv
+    }
+
+  }
+
 });
 
 app.get('/:user/results', function(request, response){
