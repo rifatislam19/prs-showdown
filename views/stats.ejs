@@ -8,7 +8,7 @@
   <% include global/header %>
 
   <div id="stats">
-    <h2>Stats- ____ games played</h2>
+    <h2>Game Statistics</h2>
     <table>
       <tr>
         <th class="top_row">Player Name</th>
@@ -16,6 +16,9 @@
         <th class="top_row">Games Won</th>
         <th class="top_row">Games Lost</th>
         <th class="top_row">Games Tied</th>
+        <th class="top_row">Percent Paper</th>
+        <th class="top_row">Percent Rock</th>
+        <th class="top_row">Percent Scissors</th>
       </tr>
       <%for(var i=0; i< user.length; i++){%>
       <tr>
@@ -24,7 +27,9 @@
         <td> <%= user[i]["wins"]%> </td>
         <td> <%= user[i]["losses"]%> </td>
         <td> <%= user[i]["gamesPlayed"]-user[i]["wins"]-user[i]["losses"]%> </td>
-        <td> </td>
+        <td> <%= (parseInt(100*user[i]["paper"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
+        <td> <%= (parseInt(100*user[i]["rock"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
+        <td> <%= (parseInt(100*user[i]["scissors"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
       </tr>
       <%}%>
     </table>
