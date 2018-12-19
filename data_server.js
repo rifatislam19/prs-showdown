@@ -35,6 +35,7 @@ app.get('/login', function(request, response){
     user["password"] = user_d[7];
     user_info.push(user);
   }
+  //console.log(user_data["password"]);
   for(i=0;i<user_info.length;i++){
     if(user_info[i]["name"]==user_data["name"]){
 
@@ -45,10 +46,11 @@ app.get('/login', function(request, response){
       }
 
       else{
-          document.getElementById("feedback").classList.remove("visible");
-          document.getElementById("feedback").classList.add("hidden");
-          document.getElementById("enter_name").classList.remove("hidden");
-          document.getElementById("enter_name").classList.add("visible");
+          document.getElementById("feedback").classList.remove("hidden");
+          document.getElementById("feedback").classList.add("visible");
+
+          //console.log(user_info[i]["password"] + " " + user_data["password"]);
+
         //error message
         //regenerate index, insert username and password
       }
@@ -94,11 +96,8 @@ app.get('/stats', function(request, response){
   var villain_data = [];
   for(var i=1; i<rows.length-1; i++){
     var user_d = rows[i].split(',');
-    var villain_d = villainsRows.split(',');
     console.log(user_d);
-    console.log(villain_d);
     var user = {};
-    var villain = {};
     user["name"] = user_d[0];
     user["gamesPlayed"] = parseInt(user_d[1]);
     user["wins"] = parseInt(user_d[2]);
@@ -106,6 +105,16 @@ app.get('/stats', function(request, response){
     user["paper"] = parseInt(user_d[4]);
     user["rock"] = parseInt(user_d[5]);
     user["scissors"] = parseInt(user_d[6]);
+    user["password"] = user_d[7];
+
+    //add the user to the array of users
+    user_data.push(user);
+
+  }
+  for(var i=1; i<rows.length-1; i++){
+    var villain_d = villainsRows.split(',');
+    console.log(villain_d);
+    var villain = {};
     villain["name"] = user_d[0];
     villain["gamesPlayed"] = parseInt(user_d[1]);
     villain["wins"] = parseInt(user_d[2]);
@@ -113,10 +122,6 @@ app.get('/stats', function(request, response){
     villain["paper"] = parseInt(user_d[4]);
     villain["rock"] = parseInt(user_d[5]);
     villain["scissors"] = parseInt(user_d[6]);
-    user["password"] = user_d[7];
-
-    //add the user to the array of users
-    user_data.push(user);
     villain_data.push(villain);
   }
   console.log(user_data);
