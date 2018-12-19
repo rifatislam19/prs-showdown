@@ -61,7 +61,7 @@ app.get('/:user/results', function(request, response){
   var user_data={
       name: request.params.user,
       weapon: request.query.weapon
-  };
+  };//also add villain request
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   response.send(JSON.stringify(user_data));
@@ -76,16 +76,24 @@ app.get('/rules', function(request, response){
 app.get('/stats', function(request, response){
   //load the csv
   var users_file=fs.readFileSync('data/users.csv','utf8');
+  var villains_file=fs.readFileSync('data/villains.csv','utf8');
   //fs.writeFile('data/text.txt','Message');//replaces first argument (file) content with second argument (text) content
+  console.log(villains_file);
   console.log(users_file);
   //parse the csv
   var rows = users_file.split('\n');
+  var villainsRows = villains_file.split('\n');
   console.log(rows);
+  console.log(villainsRows);
   var user_data = [];
+  var villain_data = [];
   for(var i=1; i<rows.length-1; i++){
     var user_d = rows[i].split(',');
+    var villain_d = villainsRows.split(',');
     console.log(user_d);
+    console.log(villain_d);
     var user = {};
+    var villain = {};
     user["name"] = user_d[0];
     user["gamesPlayed"] = parseInt(user_d[1]);
     user["wins"] = parseInt(user_d[2]);
@@ -93,12 +101,21 @@ app.get('/stats', function(request, response){
     user["paper"] = parseInt(user_d[4]);
     user["rock"] = parseInt(user_d[5]);
     user["scissors"] = parseInt(user_d[6]);
+    villain["name"] = user_d[0];
+    villain["gamesPlayed"] = parseInt(user_d[1]);
+    villain["wins"] = parseInt(user_d[2]);
+    villain["losses"] = parseInt(user_d[3]);
+    villain["paper"] = parseInt(user_d[4]);
+    villain["rock"] = parseInt(user_d[5]);
+    villain["scissors"] = parseInt(user_d[6]);
     user["password"] = user_d[7];
 
     //add the user to the array of users
     user_data.push(user);
+    villain_data.push(villain);
   }
   console.log(user_data);
+  console.log(villain_data);
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   response.render('stats', {user:user_data});
