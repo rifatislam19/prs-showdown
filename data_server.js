@@ -36,16 +36,21 @@ app.get('/login', function(request, response){
     user_info.push(user);
   }
   for(i=0;i<user_info.length;i++){
-    if(user_info[i]["name"]=user_data["name"]){
+    if(user_info[i]["name"]==user_data["name"]){
 
-      if(user_info[i]["password"]=user_data["password"]){
+      if(user_info[i]["password"]==user_data["password"]){
         response.status(200);
         response.setHeader('Content-Type', 'text/html')
         response.render('game', {user:user_data});
       }
 
       else{
+          document.getElementById("feedback").classList.remove("visible");
+          document.getElementById("feedback").classList.add("hidden");
+          document.getElementById("enter_name").classList.remove("hidden");
+          document.getElementById("enter_name").classList.add("visible");
         //error message
+        //regenerate index, insert username and password
       }
 
     }

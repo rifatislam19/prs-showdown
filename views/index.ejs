@@ -9,9 +9,11 @@
   <% include global/header %>
 
 
-  <div id="feedback">
+  <div id="feedback" class="hidden">
+    <p>Wrong password!</p>
   </div>
-  <div id="enter_name">
+
+  <div id="enter_name" class="visible">
     <h2>Welcome to Paper, Rock, Scissors</h2>
     <form action="/login" method="get">
       Please log in:<input type="text" id="enter_name_input" name="player_name">
@@ -19,6 +21,7 @@
       <button type="submit" id = "enter_name_button">Log in</button>
     </form>
   </div>
+
   <footer>
     Brought to you by the cool kids of Software Engineering - Fall, 2018.
   </footer>
