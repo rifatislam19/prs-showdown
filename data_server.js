@@ -38,7 +38,7 @@ app.get('/login', function(request, response){
   for(i=0;i<user_info.length;i++){
     if(user_info[i]["name"]=user_data["name"]){
 
-      f(user_info[i]["password"]=user_data["password"]){
+      if(user_info[i]["password"]=user_data["password"]){
         response.status(200);
         response.setHeader('Content-Type', 'text/html')
         response.render('game', {user:user_data});
