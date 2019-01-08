@@ -22,10 +22,8 @@
           <option value="scissors">Scissors</option>
         </select><br>
         <select name="villain_choice">
-          <%var fs = require('fs');%>
-          <%var villain=fs.readFileSync('data/villains.csv','utf8').split('\n');%>
           <%for (var i=0; i< villain.length; i ++){%>
-            <option><%=villain[i]["name"]%></option>
+            <option><%=villain[i].name%></option>
           <%}%>
         </select><br>
         <button type = "submit" id="throw_choice_button">Throw Choice</button>

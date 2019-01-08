@@ -52,13 +52,36 @@ app.get('/login', function(request, response){
       if(user_info[i]["password"]==user_data["password"]){
         response.status(200);
         response.setHeader('Content-Type', 'text/html')
-        response.render('game', {user:user_data});
+        var villains_file=fs.readFileSync('data/villains.csv','utf8');
+        console.log("Villains file",villains_file);
+        var villainsRows = villains_file.split('\n');
+        console.log("Villains rows",villainsRows);
+        var villain_data = [];
+        for(var i=1; i<rows.length-1; i++){
+          var villain_d = villainsRows[i].split(',');
+          console.log(villain_d);
+          var villain = {};
+          villain["name"] = villain_d[0];
+          villain["gamesPlayed"] = parseInt(villain_d[1]);
+          villain["wins"] = parseInt(villain_d[2]);
+          villain["losses"] = parseInt(villain_d[3]);
+          villain["paper"] = parseInt(villain_d[4]);
+          villain["rock"] = parseInt(villain_d[5]);
+          villain["scissors"] = parseInt(villain_d[6]);
+          villain_data.push(villain);
+        }
+        console.log("Villain_data",villain_data);
+        response.render('game', {user:user_data,villain: villain_data});
+
+        //this is where it's happening
+
+
       } else {
         document.getElementById("feedback").classList.remove("hidden");
         document.getElementById("feedback").classList.add("visible");
         //error message
         //console.log(user_info[i]["password"] + " " + user_data["password"]);//tool for console to compare passwords, obvious security flaw for final project
-        
+
         //regenerate index, insert username and password
       }
       newUserInfo = false;
@@ -120,7 +143,7 @@ app.get('/stats', function(request, response){
 
   }
   for(var i=1; i<rows.length-1; i++){
-    var villain_d = villainsRows.split(',');
+    var villain_d = villainsRows[i].split(',');
     console.log(villain_d);
     var villain = {};
     villain["name"] = villain_d[0];
