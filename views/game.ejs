@@ -6,7 +6,7 @@
  </head>
 
 <body>
-  <% include global/header %>
+  <%//include global/header %>
 
   <div id="feedback">
   </div>
@@ -22,6 +22,8 @@
           <option value="scissors">Scissors</option>
         </select><br>
         <select name="villain_choice">
+          <%var fs = require('fs');%>
+          <%var villain=fs.readFileSync('data/villains.csv','utf8').split('\n');%>
           <%for (var i=0; i< villain.length; i ++){%>
             <option><%=villain[i]["name"]%></option>
           <%}%>
