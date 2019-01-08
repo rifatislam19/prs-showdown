@@ -77,8 +77,13 @@ app.get('/login', function(request, response){
 
 
       } else {
-        document.getElementById("feedback").classList.remove("hidden");
-        document.getElementById("feedback").classList.add("visible");
+        response.status(200);
+        response.setHeader('Content-Type', 'text/html')
+        response.render('index', {message:"Invalid password!"});
+        console.log("Wrong password!");
+
+        //document.getElementById("feedback").classList.remove("hidden");
+        //document.getElementById("feedback").classList.add("visible");
         //error message
         //console.log(user_info[i]["password"] + " " + user_data["password"]);//tool for console to compare passwords, obvious security flaw for final project
 
