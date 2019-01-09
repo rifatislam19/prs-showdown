@@ -16,7 +16,7 @@ app.listen(port, function(){
 app.get('/', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render('index');
+  response.render('index', {message:false});
 });
 
 var userStringToObject = function (userArray) {
@@ -71,7 +71,7 @@ app.get('/login', function(request, response){
           villain_data.push(villain);
         }
         console.log("Villain_data",villain_data);
-        response.render('game', {user:user_data,villain: villain_data});
+        response.render('game', {user:user_data,villain:villain_data});
 
         //this is where it's happening
 
@@ -79,7 +79,7 @@ app.get('/login', function(request, response){
       } else {
         response.status(200);
         response.setHeader('Content-Type', 'text/html')
-        response.render('index', {message:"Invalid password!"});
+        response.render('index', {message:true});
         console.log("Wrong password!");
 
         //document.getElementById("feedback").classList.remove("hidden");

@@ -7,11 +7,11 @@
 
 <body>
   <% include global/header %>
-
-
-  <div id="feedback" class="hidden">
+  <% if (message) { %>
+  <div id="feedback" class="visible">
     <p>Wrong password!</p>
   </div>
+<% } %>
 
   <div id="enter_name" class="visible">
     <h2>Welcome to Paper, Rock, Scissors</h2>
