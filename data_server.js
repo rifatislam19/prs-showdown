@@ -80,20 +80,25 @@ app.get('/login', function(request, response){
         response.status(200);
         response.setHeader('Content-Type', 'text/html')
         response.render('index', {message:true});
-        console.log("Wrong password!");
 
-        //document.getElementById("feedback").classList.remove("hidden");
-        //document.getElementById("feedback").classList.add("visible");
-        //error message
-        //console.log(user_info[i]["password"] + " " + user_data["password"]);//tool for console to compare passwords, obvious security flaw for final project
-
-        //regenerate index, insert username and password
       }
       newUserInfo = false;
     }
   }
 
   if (newUserInfo) {
+    var new_user = {
+      name: user_data["name"],
+      gamesPlayed: 0,
+      wins: 0,
+      losses: 0,
+      paper: 0,
+      rock: 0,
+      scissors: 0,
+      password: user_data["password"]
+    }
+    user_info.push(new_user);
+    console.log(user_info);
     //adds new user and goes to game page, maybe later make it new page?
   }
 });
@@ -105,7 +110,7 @@ app.get('/:user/results', function(request, response){
   };//also add villain request
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.send(JSON.stringify(user_data));
+  response.render('results', {user:user_data})
 });
 
 app.get('/rules', function(request, response){
