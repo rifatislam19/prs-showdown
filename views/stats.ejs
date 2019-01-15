@@ -59,9 +59,10 @@
           <td> <%= (parseInt(100*user[i]["paper"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
           <td> <%= (parseInt(100*user[i]["rock"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
           <td> <%= (parseInt(100*user[i]["scissors"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
-        <%}%>
-      </tr>
-      <%}%>
+        <%} else { %>
+          <td>N/A</td><td>N/A</td><td>N/A</td>
+        <% } %>
+    </tr>
     </table>
 
     <h2>User Statistics</h2>
@@ -83,13 +84,14 @@
         <td> <%= villain[i]["wins"]%> </td>
         <td> <%= villain[i]["losses"]%> </td>
         <td> <%= villain[i]["gamesPlayed"]-villain[i]["wins"]-villain[i]["losses"]%> </td>
-        <% if (user[i]["gamesPlayed"]!=0) { %>
+        <% if (villain[i]["gamesPlayed"]!=0) { %>
           <td> <%= (parseInt(100*villain[i]["paper"]/villain[i]["gamesPlayed"])).toString()+"%" %> </td>
           <td> <%= (parseInt(100*villain[i]["rock"]/villain[i]["gamesPlayed"])).toString()+"%" %> </td>
           <td> <%= (parseInt(100*villain[i]["scissors"]/villain[i]["gamesPlayed"])).toString()+"%" %> </td>
+        <% } else { %>
+          <td>N/A</td><td>N/A</td><td>N/A</td>
         <% } %>
       </tr>
-      <%}%>
     </table>
   </div>
 
