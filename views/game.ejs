@@ -20,12 +20,14 @@
           <option value="paper">Paper</option>
           <option value="rock">Rock</option>
           <option value="scissors">Scissors</option>
-        </select><br>
+        </select><br><br>
+        Choose your opponent<br>
         <select name="villain_choice">
+          <option value=" "> </option>
           <%for (var i=0; i< villain.length; i ++){%>
-            <option><%=villain[i].name%></option>
+            <option value=<%=villain[i].name%>> <%=villain[i].name%> </option>
           <%}%>
-        </select><br>
+        </select><br><br>
         <button type = "submit" id="throw_choice_button">Throw Choice</button>
       </form>
     </div>

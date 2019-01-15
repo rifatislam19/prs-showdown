@@ -105,7 +105,7 @@ app.get('/:user/results', function(request, response){
   };//also add villain request
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.send(JSON.stringify(user_data));
+  response.render('results', {user:user_data});
 });
 
 app.get('/rules', function(request, response){

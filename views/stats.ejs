@@ -7,8 +7,36 @@
 <body>
   <% include global/header %>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <% //win/loss ratio %>
+
+
+
+
+
+
+
+
+
+
+
+
+
   <div id="stats">
-    <h2>Game Statistics</h2>
+    <h2>User Statistics</h2>
     <table>
       <tr>
         <th class="top_row">Player Name</th>
@@ -30,6 +58,32 @@
         <td> <%= (parseInt(100*user[i]["paper"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
         <td> <%= (parseInt(100*user[i]["rock"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
         <td> <%= (parseInt(100*user[i]["scissors"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
+      </tr>
+      <%}%>
+    </table>
+
+    <h2>User Statistics</h2>
+    <table>
+      <tr>
+        <th class="top_row">Villain Name</th>
+        <th class="top_row">Games Played</th>
+        <th class="top_row">Games Won</th>
+        <th class="top_row">Games Lost</th>
+        <th class="top_row">Games Tied</th>
+        <th class="top_row">Percent Paper</th>
+        <th class="top_row">Percent Rock</th>
+        <th class="top_row">Percent Scissors</th>
+      </tr>
+      <%for(var i=0; i< villain.length; i++){%>
+      <tr>
+        <td> <%= villain[i]["name"]%> </td>
+        <td> <%= villain[i]["gamesPlayed"]%> </td>
+        <td> <%= villain[i]["wins"]%> </td>
+        <td> <%= villain[i]["losses"]%> </td>
+        <td> <%= villain[i]["gamesPlayed"]-villain[i]["wins"]-villain[i]["losses"]%> </td>
+        <td> <%= (parseInt(100*villain[i]["paper"]/villain[i]["gamesPlayed"])).toString()+"%" %> </td>
+        <td> <%= (parseInt(100*villain[i]["rock"]/villain[i]["gamesPlayed"])).toString()+"%" %> </td>
+        <td> <%= (parseInt(100*villain[i]["scissors"]/villain[i]["gamesPlayed"])).toString()+"%" %> </td>
       </tr>
       <%}%>
     </table>
