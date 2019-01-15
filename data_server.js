@@ -16,7 +16,7 @@ app.listen(port, function(){
 app.get('/', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render('index');
+  response.render('index', {message:false});
 });
 
 var userStringToObject = function (userArray) {
@@ -71,7 +71,7 @@ app.get('/login', function(request, response){
           villain_data.push(villain);
         }
         console.log("Villain_data",villain_data);
-        response.render('game', {user:user_data,villain: villain_data});
+        response.render('game', {user:user_data,villain:villain_data});
 
         //this is where it's happening
 
@@ -79,21 +79,61 @@ app.get('/login', function(request, response){
       } else {
         response.status(200);
         response.setHeader('Content-Type', 'text/html')
-        response.render('index', {message:"Invalid password!"});
-        console.log("Wrong password!");
+        response.render('index', {message:true});
 
-        //document.getElementById("feedback").classList.remove("hidden");
-        //document.getElementById("feedback").classList.add("visible");
-        //error message
-        //console.log(user_info[i]["password"] + " " + user_data["password"]);//tool for console to compare passwords, obvious security flaw for final project
-
-        //regenerate index, insert username and password
       }
       newUserInfo = false;
     }
   }
 
   if (newUserInfo) {
+    var new_user = {
+      name: user_data["name"],
+      gamesPlayed: 0,
+      wins: 0,
+      losses: 0,
+      paper: 0,
+      rock: 0,
+      scissors: 0,
+      password: user_data["password"]
+    }
+    user_info.push(new_user);
+    var new_user_data = "name,gamesPlayed,wins,losses,paper,rock,scissors,password\n";
+    for(i=0; i<user_info.length; i++){
+      new_user_data += user_info[i]["name"] + ",";
+      new_user_data += user_info[i]["gamesPlayed"] + ",";
+      new_user_data += user_info[i]["wins"] + ",";
+      new_user_data += user_info[i]["losses"] + ",";
+      new_user_data += user_info[i]["paper"] + ",";
+      new_user_data += user_info[i]["rock"] + ",";
+      new_user_data += user_info[i]["scissors"] + ",";
+      new_user_data += user_info[i]["password"];
+      new_user_data += "\n";
+    }
+    fs.writeFileSync('data/users.csv', new_user_data,'utf8');
+
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    var villains_file=fs.readFileSync('data/villains.csv','utf8');
+    console.log("Villains file",villains_file);
+    var villainsRows = villains_file.split('\n');
+    console.log("Villains rows",villainsRows);
+    var villain_data = [];
+    for(var i=1; i<rows.length-1; i++){
+      var villain_d = villainsRows[i].split(',');
+      console.log(villain_d);
+      var villain = {};
+      villain["name"] = villain_d[0];
+      villain["gamesPlayed"] = parseInt(villain_d[1]);
+      villain["wins"] = parseInt(villain_d[2]);
+      villain["losses"] = parseInt(villain_d[3]);
+      villain["paper"] = parseInt(villain_d[4]);
+      villain["rock"] = parseInt(villain_d[5]);
+      villain["scissors"] = parseInt(villain_d[6]);
+      villain_data.push(villain);
+    }
+    console.log("Villain_data",villain_data);
+    response.render('game', {user:user_data,villain:villain_data});
     //adds new user and goes to game page, maybe later make it new page?
   }
 });
@@ -105,7 +145,7 @@ app.get('/:user/results', function(request, response){
   };//also add villain request
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render('results', {user:user_data});
+  response.render('results', {user:user_data})
 });
 
 app.get('/rules', function(request, response){
@@ -164,7 +204,7 @@ app.get('/stats', function(request, response){
   console.log(villain_data);
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
-  response.render('stats', {user:user_data});
+  response.render('stats', {user:user_data, villain:villain_data});
 });
 app.get('/about', function(request, response){
   response.status(200);
