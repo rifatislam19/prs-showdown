@@ -187,7 +187,7 @@ app.get('/stats', function(request, response){
     user_data.push(user);
 
   }
-  for(var i=1; i<rows.length-1; i++){
+  for(var i=1; i<villainsRows.length-1; i++){
     var villain_d = villainsRows[i].split(',');
     console.log(villain_d);
     var villain = {};
