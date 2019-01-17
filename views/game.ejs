@@ -24,6 +24,7 @@
         Choose your opponent<br>
         <select name="villain_choice">
           <option value=" "> </option>
+          <% console.log(villain.length) %>
           <%for (var i=0; i< villain.length; i ++){%>
             <option value=<%=villain[i].name%>> <%=villain[i].name%> </option>
           <%}%>

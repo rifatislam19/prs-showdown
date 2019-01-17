@@ -119,7 +119,7 @@ app.get('/login', function(request, response){
     var villainsRows = villains_file.split('\n');
     console.log("Villains rows",villainsRows);
     var villain_data = [];
-    for(var i=1; i<rows.length-1; i++){
+    for(var i=1; i<villainRows.length-1; i++){
       var villain_d = villainsRows[i].split(',');
       console.log(villain_d);
       var villain = {};
