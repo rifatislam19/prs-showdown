@@ -63,7 +63,7 @@ app.get('/login', function(request, response){
           var villainsRows = villains_file.split('\n');
           console.log("Villains rows",villainsRows);
           var villain_data = [];
-          for(var i=1; i<rows.length-1; i++){
+          for(var i=1; i<villainsRows.length-1; i++){
             var villain_d = villainsRows[i].split(',');
             console.log(villain_d);
             var villain = {};
@@ -148,7 +148,8 @@ app.get('/login', function(request, response){
 app.get('/:user/results', function(request, response){
   var user_data={
       name: request.params.user,
-      weapon: request.query.weapon
+      weapon: request.query.weapon,
+      villain_choice: request.query.villain_choice
   };//also add villain request
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
