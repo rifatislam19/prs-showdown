@@ -6,6 +6,8 @@
  </head>
 
 <body>
+  <% include global/header.ejs %>
+
   <div>
     <% var ai_throw = 0; %>
     <% var villain_throw = ""; %>
@@ -151,11 +153,83 @@
       <h2>It's a tie!</h2>
     <% } else if ((user.weapon=="paper"&&villain_throw=="rock")||(user.weapon=="scissors"&&villain_throw=="paper")||(user.weapon=="rock"&&villain_throw=="scissors")){ %>
       <h2><%=user.name%> wins!</h2>
+
+      <% for(i=0;i<user_info.length;i++){ %>
+        <% if(user_info[i]["name"]==user.name){ %>
+          <% user_info[i]["wins"]++;%>
+        <% } %>
+      <% } %>
+
+      <% for(i=0;i<villain_data.length;i++){ %>
+        <% if(villain_data[i]["name"]==user.villain_choice){ %>
+          <% villain_data[i]["losses"]++;%>
+        <% } %>
+      <% } %>
+
     <% } else if ((user.weapon=="rock"&&villain_throw=="paper")||(user.weapon=="paper"&&villain_throw=="scissors")||(user.weapon=="scissors"&&villain_throw=="rock")){ %>
       <h2><%=user.villain_choice%> wins!</h2>
+
+      <% for(i=0;i<user_info.length;i++){ %>
+        <% if(user_info[i]["name"]==user.name){ %>
+          <% user_info[i]["losses"]++;%>
+        <% } %>
+      <% } %>
+
+      <% for(i=0;i<villain_data.length;i++){ %>
+        <% if(villain_data[i]["name"]==user.villain_choice){ %>
+          <% villain_data[i]["wins"]++;%>
+        <% } %>
+      <% } %>
+
     <% } %>
 
-    <button type = "submit" id="play_again_button">Play Again</button>
+    <% for(i=0;i<user_info.length;i++){ %>
+      <% if(user_info[i]["name"]==user.name){ %>
+        <% user_info[i]["gamesPlayed"]++;%>
+        <% if(user.weapon=="paper"){ user_info[i]["paper"]++; } %>
+        <% if(user.weapon=="rock"){ user_info[i]["rock"]++; } %>
+        <% if(user.weapon=="scissors"){ user_info[i]["scissors"]++; } %>
+      <% } %>
+    <% } %>
+
+
+    <% for(i=0;i<villain_data.length;i++){ %>
+      <% if(villain_data[i]["name"]==user.villain_choice){ %>
+        <% villain_data[i]["gamesPlayed"]++;%>
+        <% if(villain_throw=="paper"){ villain_data[i]["paper"]++; } %>
+        <% if(villain_throw=="rock"){ villain_data[i]["rock"]++; } %>
+        <% if(villain_throw=="scissors"){ villain_data[i]["scissors"]++; } %>
+        <% } %>
+    <% } %>
+
+    <% var new_user_data = "name,gamesPlayed,wins,losses,paper,rock,scissors,password\n"; %>
+    <% for(i=0; i<user_info.length; i++){ %>
+      <% new_user_data += user_info[i]["name"] + ","; %>
+      <% new_user_data += user_info[i]["gamesPlayed"] + ","; %>
+      <% new_user_data += user_info[i]["wins"] + ","; %>
+      <% new_user_data += user_info[i]["losses"] + ","; %>
+      <% new_user_data += user_info[i]["paper"] + ","; %>
+      <% new_user_data += user_info[i]["rock"] + ","; %>
+      <% new_user_data += user_info[i]["scissors"] + ","; %>
+      <% new_user_data += user_info[i]["password"]; %>
+      <% new_user_data += "\n"; %>
+    <% } %>
+
+    <% var new_villain_data = "name,gamesPlayed,wins,losses,paper,rock,scissors,strategy\n"; %>
+    <% for(i=0; i<villain_data.length; i++){ %>
+      <% new_villain_data += villain_data[i]["name"] + ","; %>
+      <% new_villain_data += villain_data[i]["gamesPlayed"] + ","; %>
+      <% new_villain_data += villain_data[i]["wins"] + ","; %>
+      <% new_villain_data += villain_data[i]["losses"] + ","; %>
+      <% new_villain_data += villain_data[i]["paper"] + ","; %>
+      <% new_villain_data += villain_data[i]["scissors"] + ","; %>
+      <% new_villain_data += villain_data[i]["strategy"]; %>
+      <% new_villain_data += "\n"; %>
+    <% } %>
+
+    <form action="/login" method="get">
+      <button type = "submit" id="play_again_button">Play Again</button>
+    </form>
 
   </div>
   <footer>

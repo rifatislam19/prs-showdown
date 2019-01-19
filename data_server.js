@@ -36,6 +36,7 @@ var userStringToObject = function (userArray) {
 }
 
 app.get('/login', function(request, response){
+
   var user_data={
       name: request.query.player_name,
       password: request.query.player_password
@@ -128,7 +129,7 @@ app.get('/login', function(request, response){
       var villainsRows = villains_file.split('\n');
       //console.log("Villains rows",villainsRows);
       var villain_data = [];
-      for(var i=1; i<villainRows.length-1; i++){
+      for(var i=1; i<villainsRows.length-1; i++){
         var villain_d = villainsRows[i].split(',');
         //console.log(villain_d);
         var villain = {};
@@ -155,7 +156,36 @@ app.get('/:user/results', function(request, response){
       weapon: request.query.weapon,
       villain_choice: request.query.villain_choice
   };
+
+  var users_file=fs.readFileSync('data/users.csv','utf8');//converts users csv to a string
+  var rows = users_file.split('\n');//generates array of stringified user objects
+  var user_info = [];//array which will hold objectified users
+  for(var i=1; i<rows.length-1; i++){//indexing does not include header or whitespace at the end
+    var user = userStringToObject(rows[i].split(','));//converts stringified user object to array of stringified values
+    user_info.push(user);//adds user to list
+  }
+
+  var villains_file=fs.readFileSync('data/villains.csv','utf8');
+  //console.log("Villains file",villains_file);
+  var villainsRows = villains_file.split('\n');
+  //console.log("Villains rows",villainsRows);
+  var villain_data = [];
+  for(var i=1; i<villainsRows.length-1; i++){
+    var villain_d = villainsRows[i].split(',');
+    //console.log(villain_d);
+    var villain = {};
+    villain["name"] = villain_d[0];
+    villain["gamesPlayed"] = parseInt(villain_d[1]);
+    villain["wins"] = parseInt(villain_d[2]);
+    villain["losses"] = parseInt(villain_d[3]);
+    villain["paper"] = parseInt(villain_d[4]);
+    villain["rock"] = parseInt(villain_d[5]);
+    villain["scissors"] = parseInt(villain_d[6]);
+    villain["strategy"] = villain_d[7];
+    villain_data.push(villain);
+  }
   //console.log(user_data["weapon"] + " and " + user_data["villain_choice"]);
+
   if(user_data["weapon"]==""||user_data["villain_choice"]==""){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
@@ -166,7 +196,7 @@ app.get('/:user/results', function(request, response){
     console.log(count);
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
-    response.render('results', {user:user_data,count:count});
+    response.render('results', {user:user_data,user_info:user_info,villain_data:villain_data,count:count});
   }
 });
 
