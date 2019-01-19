@@ -7,18 +7,156 @@
 
 <body>
   <div>
-    <h1>
+    <% var ai_throw = 0; %>
+    <% var villain_throw = ""; %>
+
+    <% if (user.villain_choice=="Boss"){ %>
+      <% villain_throw = "rock"; %>
+      <img src="../images/the_boss_rock.svg" style="width:200px;height:200px;"/>
+
+    <% } else if (user.villain_choice=="Spock"){ %>
+      <% villain_throw = "scissors"; %>
+      <img src="../images/spock_scissors.svg" style="width:200px;height:200px;"/>
+
+    <% } else if (user.villain_choice=="Regal"){ %>
+      <% villain_throw = "paper"; %>
+      <img src="../images/regal_paper.svg" style="width:200px;height:200px;"/>
+
+    <% } else if (user.villain_choice=="Mickey"){ %>
+      <% villain_throw = user.weapon; %>
+      <% if(villain_throw=="paper"){ %>
+        <img src="../images/mickey_paper.svg" style="width:200px;height:200px;"/>
+      <% } else if(villain_throw=="rock"){ %>
+        <img src="../images/mickey_rock.svg" style="width:200px;height:200px;"/>
+      <% } else if(villain_throw=="scissors"){ %>
+        <img src="../images/mickey_scissors.svg" style="width:200px;height:200px;"/>
+      <% } %>
+
+    <% } else if (user.villain_choice=="Magician"){ %>
+      <% if(user.weapon=="paper"){ %>
+        <% villain_throw = "scissors"; %>
+        <img src="../images/the_magician_scissors.svg" style="width:200px;height:200px;"/>
+      <% } else if(user.weapon=="rock"){ %>
+        <% villain_throw = "paper"; %>
+        <img src="../images/the_magician_paper.svg" style="width:200px;height:200px;"/>
+      <% } else if(user.weapon=="scissors"){ %>
+        <% villain_throw = "rock"; %>
+        <img src="../images/the_magician_rock.svg" style="width:200px;height:200px;"/>
+      <% } %>
+
+      <% } else if (user.villain_choice=="Bones"){ %>
+        <% if(user.weapon=="scissors"){ %>
+          <% villain_throw = "paper"; %>
+          <img src="../images/bones_paper.svg" style="width:200px;height:200px;"/>
+        <% } else if(user.weapon=="paper"){ %>
+          <% villain_throw = "rock"; %>
+          <img src="../images/bones_rock.svg" style="width:200px;height:200px;"/>
+        <% } else if(user.weapon=="rock"){ %>
+          <% villain_throw = "scissors"; %>
+          <img src="../images/bones_scissors.svg" style="width:200px;height:200px;"/>
+        <% } %>
+
+    <% } else if (user.villain_choice=="Pixie"){ %>
+      <% ai_throw = Math.floor(Math.random()*3)+1; %>
+      <% if(ai_throw==1){ %>
+        <% villain_throw = "paper"; %>
+        <img src="../images/pixie_paper.svg" style="width:200px;height:200px;"/>
+      <% } else if(ai_throw==2){ %>
+        <% villain_throw = "rock"; %>
+        <img src="../images/pixie_rock.svg" style="width:200px;height:200px;"/>
+      <% } else if(ai_throw==3){ %>
+        <% villain_throw = "scissors"; %>
+        <img src="../images/pixie_scissors.svg" style="width:200px;height:200px;"/>
+      <% } %>
+
+    <% } else if (user.villain_choice=="Harry"){ %>
+      <% ai_throw = Math.floor(Math.random()*2)+1; %>
+      <% if(ai_throw==1){ %>
+        <% villain_throw = "paper"; %>
+        <img src="../images/harry_paper.svg" style="width:200px;height:200px;"/>
+      <% } else if(ai_throw==2){ %>
+        <% villain_throw = "rock"; %>
+        <img src="../images/harry_rock.svg" style="width:200px;height:200px;"/>
+        <% } %>
+
+    <% } else if (user.villain_choice=="Mr"){ %>
+      <% user.villain_choice = "Mr Modern"; %>
+      <% ai_throw = Math.floor(Math.random()*2)+1; %>
+      <% if(ai_throw==1){ %>
+        <% villain_throw = "scissors"; %>
+        <img src="../images/mr_modern_scissors.svg" style="width:200px;height:200px;"/>
+      <% } else if(ai_throw==2){ %>
+        <% villain_throw = "rock"; %>
+        <img src="../images/mr_modern_rock.svg" style="width:200px;height:200px;"/>
+        <% } %>
+
+    <% } else if (user.villain_choice=="Manny"){ %>
+      <% ai_throw = Math.floor(Math.random()*2)+1; %>
+      <% if(ai_throw==1){ %>
+        <% villain_throw = "paper"; %>
+        <img src="../images/manny_paper.svg" style="width:200px;height:200px;"/>
+      <% } else if(ai_throw==2){ %>
+        <% villain_throw = "scissors"; %>
+        <img src="../images/manny_scissors.svg" style="width:200px;height:200px;"/>
+        <% } %>
+
+    <% } else if (user.villain_choice=="Comic"){ %>
+      <% user.villain_choice="Comic Hans"; %>
+      <% var d = new Date(); %>
+      <% var n = d.toLocaleTimeString(); %>
+      <% ai_throw = parseInt(n.substring(6,8)); %>
+      <% if(ai_throw%3==0){ %>
+        <% villain_throw = "paper"; %>
+        <img src="../images/comic_hans_paper.svg" style="width:200px;height:200px;"/>
+      <% } else if(ai_throw%3==1){ %>
+        <% villain_throw = "rock"; %>
+        <img src="../images/comic_hans_rock.svg" style="width:200px;height:200px;"/>
+      <% } else if(ai_throw%3==2){ %>
+        <% villain_throw = "scissors"; %>
+        <img src="../images/comic_hans_scissors.svg" style="width:200px;height:200px;"/>
+      <% } %>
+
+      <% } else if (user.villain_choice=="Gato"){ %>
+        <% if(count%15<=5){ %>
+          <% ai_throw = 1; %>
+        <% } else if(count%15<=10&&count%15>5){ %>
+          <% ai_throw = 2; %>
+        <% } else if(count%15<=15&&count%15>10){ %>
+          <% ai_throw = 3; %>
+        <% } if(ai_throw==1){ %>
+          <% villain_throw = "paper"; %>
+          <img src="../images/gato_paper.svg" style="width:200px;height:200px;"/>
+        <% } else if(ai_throw==2){ %>
+          <% villain_throw = "rock"; %>
+          <img src="../images/gato_rock.svg" style="width:200px;height:200px;"/>
+        <% } else if(ai_throw==3){ %>
+          <% villain_throw = "scissors"; %>
+          <img src="../images/gato_scissors.svg" style="width:200px;height:200px;"/>
+        <% }%>
+
+    <% } %>
+
     <% if (user.weapon=="paper") { %>
-    	<%= "PAPER"%>
+    	<img src="../images/paper.png" style="width:200px;height:200px;"/>
     <% } else if (user.weapon=="rock") { %>
-    	<%= "ROCK"%>
+    	<img src="../images/rock.png" style="width:200px;height:200px;"/>
     <% } else if (user.weapon=="scissors") { %>
-    	<%= "SCISSORS"%>
+    	<img src="../images/scissors.png" style="width:200px;height:200px;"/>
     <% } else {%>
       <%= "This shouldn't be here"%>
     <% } %>
-    <% console.log(user.villain_choice) %>
-    </h1>
+
+    <h2><%=user.name%> threw <%=user.weapon%>. <%=user.villain_choice%> threw <%=villain_throw%>.</h2>
+    <% if (user.weapon==villain_throw) { %>
+      <h2>It's a tie!</h2>
+    <% } else if ((user.weapon=="paper"&&villain_throw=="rock")||(user.weapon=="scissors"&&villain_throw=="paper")||(user.weapon=="rock"&&villain_throw=="scissors")){ %>
+      <h2><%=user.name%> wins!</h2>
+    <% } else if ((user.weapon=="rock"&&villain_throw=="paper")||(user.weapon=="paper"&&villain_throw=="scissors")||(user.weapon=="scissors"&&villain_throw=="rock")){ %>
+      <h2><%=user.villain_choice%> wins!</h2>
+    <% } %>
+
+    <button type = "submit" id="play_again_button">Play Again</button>
+
   </div>
   <footer>
     Brought to you by the cool kids of Software Engineering - Fall, 2018.

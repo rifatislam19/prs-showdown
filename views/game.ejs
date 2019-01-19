@@ -8,8 +8,11 @@
 <body>
   <%//include global/header %>
 
-  <div id="feedback">
+  <% if (message3) { %>
+  <div id="feedback" class="visible">
+    <p>Enter weapon and villain choice!</p>
   </div>
+  <% } %>
   <div id="throw_choice">
       <h2>Play the Game</h2>
       <h4><%=user.name%>, it's your turn to bust a move!</h4>
@@ -24,7 +27,6 @@
         Choose your opponent<br>
         <select name="villain_choice">
           <option value=" "> </option>
-          <% console.log(villain.length) %>
           <%for (var i=0; i< villain.length; i ++){%>
             <option value=<%=villain[i].name%>> <%=villain[i].name%> </option>
           <%}%>

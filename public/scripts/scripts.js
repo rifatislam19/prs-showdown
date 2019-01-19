@@ -1,11 +1,11 @@
-var player_name = localStorage.getItem("player_name");
-
-if(!player_name){
-  showOrNot(document.getElementById("enter_name"), true);
-}else {
-  updateNames(player_name);
-  showOrNot(document.getElementById("throw_choice"), true);
-}
+// var player_name = localStorage.getItem("player_name");
+//
+// if(!player_name){
+//   showOrNot(document.getElementById("enter_name"), true);
+// }else {
+//   updateNames(player_name);
+//   showOrNot(document.getElementById("throw_choice"), true);
+// }
 
 ///////////////////Event Listions//////////////////
 toggleVisibility(document.getElementById("show_rules_button"), document.getElementById("rules"));

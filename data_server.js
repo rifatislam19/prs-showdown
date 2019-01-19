@@ -13,6 +13,8 @@ app.listen(port, function(){
   console.log('Server started at '+ new Date()+', on port ' + port+'!');
 });//console confirmation of established server
 
+var count = 0;
+
 app.get('/', function(request, response){
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
@@ -59,13 +61,13 @@ app.get('/login', function(request, response){
           response.status(200);
           response.setHeader('Content-Type', 'text/html')
           var villains_file=fs.readFileSync('data/villains.csv','utf8');
-          console.log("Villains file",villains_file);
+          //console.log("Villains file",villains_file);
           var villainsRows = villains_file.split('\n');
-          console.log("Villains rows",villainsRows);
+          //console.log("Villains rows",villainsRows);
           var villain_data = [];
           for(var i=1; i<villainsRows.length-1; i++){
             var villain_d = villainsRows[i].split(',');
-            console.log(villain_d);
+            //console.log(villain_d);
             var villain = {};
             villain["name"] = villain_d[0];
             villain["gamesPlayed"] = parseInt(villain_d[1]);
@@ -74,10 +76,11 @@ app.get('/login', function(request, response){
             villain["paper"] = parseInt(villain_d[4]);
             villain["rock"] = parseInt(villain_d[5]);
             villain["scissors"] = parseInt(villain_d[6]);
+            villain["strategy"] = villain_d[7];
             villain_data.push(villain);
           }
-          console.log("Villain_data",villain_data);
-          response.render('game', {user:user_data,villain:villain_data});
+          //console.log("Villain_data",villain_data);
+          response.render('game', {user:user_data,villain:villain_data, message3:false});
 
           //this is where it's happening
 
@@ -121,13 +124,13 @@ app.get('/login', function(request, response){
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
       var villains_file=fs.readFileSync('data/villains.csv','utf8');
-      console.log("Villains file",villains_file);
+      //console.log("Villains file",villains_file);
       var villainsRows = villains_file.split('\n');
-      console.log("Villains rows",villainsRows);
+      //console.log("Villains rows",villainsRows);
       var villain_data = [];
       for(var i=1; i<villainRows.length-1; i++){
         var villain_d = villainsRows[i].split(',');
-        console.log(villain_d);
+        //console.log(villain_d);
         var villain = {};
         villain["name"] = villain_d[0];
         villain["gamesPlayed"] = parseInt(villain_d[1]);
@@ -136,10 +139,11 @@ app.get('/login', function(request, response){
         villain["paper"] = parseInt(villain_d[4]);
         villain["rock"] = parseInt(villain_d[5]);
         villain["scissors"] = parseInt(villain_d[6]);
+        villain["strategy"] = villain_d[7];
         villain_data.push(villain);
       }
-      console.log("Villain_data",villain_data);
-      response.render('game', {user:user_data,villain:villain_data});
+      //console.log("Villain_data",villain_data);
+      response.render('game', {user:user_data,villain:villain_data, message3:false});
       //adds new user and goes to game page, maybe later make it new page?
     }
   }
@@ -150,10 +154,20 @@ app.get('/:user/results', function(request, response){
       name: request.params.user,
       weapon: request.query.weapon,
       villain_choice: request.query.villain_choice
-  };//also add villain request
-  response.status(200);
-  response.setHeader('Content-Type', 'text/html')
-  response.render('results', {user:user_data})
+  };
+  //console.log(user_data["weapon"] + " and " + user_data["villain_choice"]);
+  if(user_data["weapon"]==""||user_data["villain_choice"]==""){
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render('game', {user:user_data,villain:villain_data, message3:true});
+  }//this part doesn't work
+  else{
+    count++;
+    console.log(count);
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render('results', {user:user_data,count:count});
+  }
 });
 
 app.get('/rules', function(request, response){
@@ -167,20 +181,20 @@ app.get('/stats', function(request, response){
   var users_file=fs.readFileSync('data/users.csv','utf8');
   var villains_file=fs.readFileSync('data/villains.csv','utf8');
   //fs.writeFile('data/text.txt','Message');//replaces first argument (file) content with second argument (text) content
-  console.log(villains_file);
-  console.log(users_file);
+  //console.log(villains_file);
+  //console.log(users_file);
   //parse the csv
   var rows = users_file.split('\n');
   var villainsRows = villains_file.split('\n');
   //converts strings into arrays
-  console.log(rows);
-  console.log(villainsRows);
+  //console.log(rows);
+  //console.log(villainsRows);
   //logs to developer console for reference
   var user_data = [];
   var villain_data = [];
   for(var i=1; i<rows.length-1; i++){
     var user_d = rows[i].split(',');
-    console.log(user_d);
+    //console.log(user_d);
     var user = {};
     user["name"] = user_d[0];
     user["gamesPlayed"] = parseInt(user_d[1]);
@@ -197,7 +211,7 @@ app.get('/stats', function(request, response){
   }
   for(var i=1; i<villainsRows.length-1; i++){
     var villain_d = villainsRows[i].split(',');
-    console.log(villain_d);
+    //console.log(villain_d);
     var villain = {};
     villain["name"] = villain_d[0];
     villain["gamesPlayed"] = parseInt(villain_d[1]);
@@ -206,10 +220,11 @@ app.get('/stats', function(request, response){
     villain["paper"] = parseInt(villain_d[4]);
     villain["rock"] = parseInt(villain_d[5]);
     villain["scissors"] = parseInt(villain_d[6]);
+    villain["strategy"] = villain_d[7];
     villain_data.push(villain);
   }
-  console.log(user_data);
-  console.log(villain_data);
+  //console.log(user_data);
+  //console.log(villain_data);
   response.status(200);
   response.setHeader('Content-Type', 'text/html')
   response.render('stats', {user:user_data, villain:villain_data});

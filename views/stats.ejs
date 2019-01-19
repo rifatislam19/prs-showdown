@@ -7,33 +7,7 @@
 <body>
   <% include global/header %>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <% //win/loss ratio %>
-
-
-
-
-
-
-
-
-
-
-
-
 
   <div id="stats">
     <h2>User Statistics</h2>
@@ -78,6 +52,7 @@
         <th class="top_row">Percent Paper</th>
         <th class="top_row">Percent Rock</th>
         <th class="top_row">Percent Scissors</th>
+        <th class="top_row">Strategy Used</th>
       </tr>
       <%for(var i=0; i< villain.length; i++){%>
       <tr>
@@ -94,7 +69,9 @@
           <td>N/A</td>
           <td>N/A</td>
           <td>N/A</td>
-        <% } }%>
+        <% } %>
+        <td> <%= villain[i]["strategy"]%> </td>
+      <% } %>
       </tr>
     </table>
   </div>
