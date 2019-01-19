@@ -12,6 +12,11 @@
     <p>Wrong password!</p>
   </div>
 <% } %>
+<% if (message2) { %>
+<div id="feedback" class="visible">
+  <p>Enter username and password!</p>
+</div>
+<% } %>
 
   <div id="enter_name" class="visible">
     <h2>Welcome to Paper, Rock, Scissors</h2>
