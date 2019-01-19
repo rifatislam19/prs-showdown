@@ -1,13 +1,4 @@
 name,gamesPlayed,wins,losses,paper,rock,scissors,password
 mario,10,5,5,1,9,0,mario
 luigi,9,3,3,3,3,3,luigi
-wario,0,0,0,0,0,0,wario
-undefined,0,0,0,0,0,0,undefined
-undefined,0,0,0,0,0,0,undefined
-undefined,0,0,0,0,0,0,undefined
-undefined,0,0,0,0,0,0,undefined
-undefined,0,0,0,0,0,0,undefined
-undefined,0,0,0,0,0,0,undefined
-undefined,0,0,0,0,0,0,undefined
-undefined,0,0,0,0,0,0,undefined
-undefined,0,0,0,0,0,0,undefined
+wario,8,3,3,1,4,3,wario

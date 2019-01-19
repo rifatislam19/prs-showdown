@@ -156,47 +156,168 @@ app.get('/:user/results', function(request, response){
       weapon: request.query.weapon,
       villain_choice: request.query.villain_choice
   };
-
-  var users_file=fs.readFileSync('data/users.csv','utf8');//converts users csv to a string
-  var rows = users_file.split('\n');//generates array of stringified user objects
-  var user_info = [];//array which will hold objectified users
-  for(var i=1; i<rows.length-1; i++){//indexing does not include header or whitespace at the end
-    var user = userStringToObject(rows[i].split(','));//converts stringified user object to array of stringified values
-    user_info.push(user);//adds user to list
-  }
-
-  var villains_file=fs.readFileSync('data/villains.csv','utf8');
-  //console.log("Villains file",villains_file);
-  var villainsRows = villains_file.split('\n');
-  //console.log("Villains rows",villainsRows);
-  var villain_data = [];
-  for(var i=1; i<villainsRows.length-1; i++){
-    var villain_d = villainsRows[i].split(',');
-    //console.log(villain_d);
-    var villain = {};
-    villain["name"] = villain_d[0];
-    villain["gamesPlayed"] = parseInt(villain_d[1]);
-    villain["wins"] = parseInt(villain_d[2]);
-    villain["losses"] = parseInt(villain_d[3]);
-    villain["paper"] = parseInt(villain_d[4]);
-    villain["rock"] = parseInt(villain_d[5]);
-    villain["scissors"] = parseInt(villain_d[6]);
-    villain["strategy"] = villain_d[7];
-    villain_data.push(villain);
-  }
-  //console.log(user_data["weapon"] + " and " + user_data["villain_choice"]);
-
   if(user_data["weapon"]==""||user_data["villain_choice"]==""){
-    response.status(200);
-    response.setHeader('Content-Type', 'text/html')
-    response.render('game', {user:user_data,villain:villain_data, message3:true});
+      response.status(200);
+      response.setHeader('Content-Type', 'text/html')
+      response.render('game', {user:user_data,villain:villain_data, message3:true});
   }//this part doesn't work
   else{
-    count++;
-    console.log(count);
-    response.status(200);
-    response.setHeader('Content-Type', 'text/html')
-    response.render('results', {user:user_data,user_info:user_info,villain_data:villain_data,count:count});
+    var users_file=fs.readFileSync('data/users.csv','utf8');//converts users csv to a string
+    var rows = users_file.split('\n');//generates array of stringified user objects
+    var user_info = [];//array which will hold objectified users
+    for(var i=1; i<rows.length-1; i++){//indexing does not include header or whitespace at the end
+      var user = userStringToObject(rows[i].split(','));//converts stringified user object to array of stringified values
+      user_info.push(user);//adds user to list
+    }
+
+    var villains_file=fs.readFileSync('data/villains.csv','utf8');
+    //console.log("Villains file",villains_file);
+    var villainsRows = villains_file.split('\n');
+    //console.log("Villains rows",villainsRows);
+    var villain_data = [];
+    for(var i=1; i<villainsRows.length-1; i++){
+      var villain_d = villainsRows[i].split(',');
+      //console.log(villain_d);
+      var villain = {};
+      villain["name"] = villain_d[0];
+      villain["gamesPlayed"] = parseInt(villain_d[1]);
+      villain["wins"] = parseInt(villain_d[2]);
+      villain["losses"] = parseInt(villain_d[3]);
+      villain["paper"] = parseInt(villain_d[4]);
+      villain["rock"] = parseInt(villain_d[5]);
+      villain["scissors"] = parseInt(villain_d[6]);
+      villain["strategy"] = villain_d[7];
+      villain_data.push(villain);
+    }
+
+      var ai_throw = 0;
+      var villain_throw = "";
+
+      if (user_data.villain_choice=="Boss"){ villain_throw = "rock"; }
+      else if (user_data.villain_choice=="Spock"){ villain_throw = "scissors"; }
+      else if (user_data.villain_choice=="Regal"){ villain_throw = "paper"; }
+      else if (user_data.villain_choice=="Mickey"){ villain_throw = user_data.weapon; }
+      else if (user_data.villain_choice=="Magician"){
+        if(user_data.weapon=="paper"){ villain_throw = "scissors"; }
+        else if(user_data.weapon=="rock"){ villain_throw = "paper"; }
+        else if(user_data.weapon=="scissors"){ villain_throw = "rock"; }
+      } else if (user_data.villain_choice=="Bones"){
+        if(user_data.weapon=="scissors"){ villain_throw = "paper"; }
+        else if(user_data.weapon=="paper"){ villain_throw = "rock"; }
+        else if(user_data.weapon=="rock"){ villain_throw = "scissors"; }
+      } else if (user_data.villain_choice=="Pixie"){
+        ai_throw = Math.floor(Math.random()*3)+1;
+        if(ai_throw==1){ villain_throw = "paper"; }
+        else if(ai_throw==2){ villain_throw = "rock"; }
+        else if(ai_throw==3){ villain_throw = "scissors"; }
+      } else if (user_data.villain_choice=="Harry"){
+        ai_throw = Math.floor(Math.random()*2)+1;
+        if(ai_throw==1){ villain_throw = "paper"; }
+        else if(ai_throw==2){ villain_throw = "rock"; }
+      } else if (user_data.villain_choice=="Mr"){
+        user_data.villain_choice = "Mr Modern";
+        ai_throw = Math.floor(Math.random()*2)+1;
+        if(ai_throw==1){ villain_throw = "scissors"; }
+        else if(ai_throw==2){ villain_throw = "rock"; }
+      } else if (user_data.villain_choice=="Manny"){
+        ai_throw = Math.floor(Math.random()*2)+1;
+        if(ai_throw==1){ villain_throw = "paper"; }
+        else if(ai_throw==2){ villain_throw = "scissors"; }
+      } else if (user_data.villain_choice=="Comic"){
+        user_data.villain_choice="Comic Hans";
+        var d = new Date();
+        var n = d.toLocaleTimeString();
+        ai_throw = parseInt(n.substring(6,8));
+        if(ai_throw%3==0){ villain_throw = "paper"; }
+        else if(ai_throw%3==1){ villain_throw = "rock"; }
+        else if(ai_throw%3==2){ villain_throw = "scissors"; }
+        } else if (user_data.villain_choice=="Gato"){
+          if(count%15<=5){ ai_throw = 1; }
+          else if(count%15<=10&&count%15>5){ ai_throw = 2; }
+          else if(count%15<=15&&count%15>10){ ai_throw = 3; }
+          if(ai_throw==1){ villain_throw = "paper"; }
+          else if(ai_throw==2){ villain_throw = "rock"; }
+          else if(ai_throw==3){ villain_throw = "scissors"; }
+      }
+      var type = "";
+      if(user_data.weapon==villain_throw){ type="tie"; }
+      if ((user_data.weapon=="paper"&&villain_throw=="rock")||(user_data.weapon=="scissors"&&villain_throw=="paper")||(user_data.weapon=="rock"&&villain_throw=="scissors")){
+        type="win";
+        for(i=0;i<user_info.length;i++){
+          if(user_info[i]["name"]==user.name){
+            user_info[i]["wins"]++;
+            }
+        }
+        for(i=0;i<villain_data.length;i++){
+          if(villain_data[i]["name"]==user_data.villain_choice){
+            villain_data[i]["losses"]++;
+          }
+        }
+      }
+        else if ((user_data.weapon=="rock"&&villain_throw=="paper")||(user_data.weapon=="paper"&&villain_throw=="scissors")||(user_data.weapon=="scissors"&&villain_throw=="rock")){
+        type="loss";
+        for(i=0;i<user_info.length;i++){
+          if(user_info[i]["name"]==user.name){
+            user_info[i]["losses"]++;
+          }
+        }
+        for(i=0;i<villain_data.length;i++){
+          if(villain_data[i]["name"]==user_data.villain_choice){
+            villain_data[i]["wins"]++;
+          }
+        }
+      }
+
+      for(i=0;i<user_info.length;i++){
+        if(user_info[i]["name"]==user.name){
+          user_info[i]["gamesPlayed"]++;
+          if(user_data.weapon=="paper"){ user_info[i]["paper"]++; }
+          if(user_data.weapon=="rock"){ user_info[i]["rock"]++; }
+          if(user_data.weapon=="scissors"){ user_info[i]["scissors"]++; }
+        }
+      }
+      for(i=0;i<villain_data.length;i++){
+        if(villain_data[i]["name"]==user_data.villain_choice){
+          villain_data[i]["gamesPlayed"]++;
+          if(villain_throw=="paper"){ villain_data[i]["paper"]++; }
+          if(villain_throw=="rock"){ villain_data[i]["rock"]++; }
+          if(villain_throw=="scissors"){ villain_data[i]["scissors"]++; }
+          }
+      }
+      var new_user_data = "name,gamesPlayed,wins,losses,paper,rock,scissors,password\n";
+      for(i=0; i<user_info.length; i++){
+        new_user_data += user_info[i]["name"] + ",";
+        new_user_data += user_info[i]["gamesPlayed"] + ",";
+        new_user_data += user_info[i]["wins"] + ",";
+        new_user_data += user_info[i]["losses"] + ",";
+        new_user_data += user_info[i]["paper"] + ",";
+        new_user_data += user_info[i]["rock"] + ",";
+        new_user_data += user_info[i]["scissors"] + ",";
+        new_user_data += user_info[i]["password"];
+        new_user_data += "\n";
+      }
+      fs.writeFileSync('data/users.csv', new_user_data,'utf8');
+
+      var new_villain_data = "name,gamesPlayed,wins,losses,paper,rock,scissors,strategy\n";
+      for(i=0; i<villain_data.length; i++){
+        new_villain_data += villain_data[i]["name"] + ",";
+        new_villain_data += villain_data[i]["gamesPlayed"] + ",";
+        new_villain_data += villain_data[i]["wins"] + ",";
+        new_villain_data += villain_data[i]["losses"] + ",";
+        new_villain_data += villain_data[i]["paper"] + ",";
+        new_villain_data += villain_data[i]["rock"] + ",";
+        new_villain_data += villain_data[i]["scissors"] + ",";
+        new_villain_data += villain_data[i]["strategy"];
+        new_villain_data += "\n";
+        console.log(villain_data[i]["scissors"])
+      }
+      fs.writeFileSync('data/villains.csv', new_villain_data,'utf8');
+
+      count++;
+      console.log(count);
+      response.status(200);
+      response.setHeader('Content-Type', 'text/html')
+      response.render('results', {user:user_data,user_info:user_info,villain_data:villain_data,villain_throw:villain_throw, type:type});
   }
 });
 
