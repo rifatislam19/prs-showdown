@@ -8,8 +8,6 @@
 <body>
   <% include global/header.ejs %>
 
-  <div>
-
     <% if (user.villain_choice=="Boss"){ %>
       <img src="../images/the_boss_rock.svg" style="width:200px;height:200px;"/>
     <% } else if (user.villain_choice=="Spock"){ %>
@@ -96,12 +94,7 @@
       <h2><%=user.villain_choice%> wins!</h2>
     <%}%>
 
-    <form action="/login" method="get">
-      <button action="submit" id="play_again_button">Play Again</button>
-    </form>
-    <% //get this relinking to work!! %>
-
-  </div>
+    <h3> Go back to play again! </h3>
 
   <% include global/footer.ejs %>
   <script src="scripts/scripts.js"></script>
