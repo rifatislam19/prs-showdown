@@ -1,4 +1,12 @@
 name,gamesPlayed,wins,losses,paper,rock,scissors,password
-mario,10,5,5,1,9,0,mario
-luigi,9,3,3,3,3,3,luigi
-wario,8,3,3,1,4,3,wario
+mario,0,0,0,0,0,0,mario
+luigi,0,0,0,0,0,0,luigi
+wario,0,0,0,0,0,0,wario
+waluigi,0,0,0,0,0,0,waluigi
+rifat,0,0,0,0,0,0,rifat
+stephen,0,0,0,0,0,0,stephen
+steve,1,0,0,1,0,0,steve
+undefined,16,5,8,7,5,4,undefined
+undefined,13,5,8,6,3,4,undefined
+undefined,6,0,6,6,0,0,undefined
+undefined,6,0,6,6,0,0,undefined
