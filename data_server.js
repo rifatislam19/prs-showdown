@@ -225,7 +225,7 @@ app.get('/:user/results', function(request, response){
       type="win";
       //user won their game
       for(i=0;i<user_info.length;i++){
-        if(user_info[i]["name"]==user.name){
+        if(user_info[i]["name"]==user_data.name){
           user_info[i]["wins"]++;
           }
       }
@@ -241,7 +241,7 @@ app.get('/:user/results', function(request, response){
       type="loss";
       //user lost their game
       for(i=0;i<user_info.length;i++){
-        if(user_info[i]["name"]==user.name){
+        if(user_info[i]["name"]==user_data.name){
           user_info[i]["losses"]++;
         }
       }
@@ -255,7 +255,7 @@ app.get('/:user/results', function(request, response){
     }
 
     for(i=0;i<user_info.length;i++){
-      if(user_info[i]["name"]==user.name){
+      if(user_info[i]["name"]==user_data.name){
         user_info[i]["gamesPlayed"]++;
         if(user_data.weapon=="paper"){ user_info[i]["paper"]++; }
         if(user_data.weapon=="rock"){ user_info[i]["rock"]++; }
@@ -287,6 +287,7 @@ app.get('/:user/results', function(request, response){
       new_user_data += user_info[i]["password"];
       new_user_data += "\n";
     }
+
     fs.writeFileSync('data/users.csv', new_user_data,'utf8');
     //rewrites new user information to csv file
 

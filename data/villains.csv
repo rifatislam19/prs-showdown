@@ -1,11 +1,11 @@
 name,gamesPlayed,wins,losses,paper,rock,scissors,strategy
 Boss,1,0,0,0,1,0,Always rock
-Spock,8,6,2,0,0,8,Always scissors
-Regal,1,0,0,1,0,0,Always paper
-Mickey,0,0,0,0,0,0,Always ties
+Spock,9,7,2,0,0,9,Always scissors
+Regal,2,1,0,2,0,0,Always paper
+Mickey,4,0,0,3,1,0,Always ties
 Magician,0,0,0,0,0,0,Always wins
 Bones,0,0,0,0,0,0,Always loses
-Pixie,2,0,0,1,1,0,Evenly split
+Pixie,27,7,9,8,10,9,Evenly split
 Harry,4,1,3,3,1,0,No scissors
 Mr Modern,0,0,0,0,0,0,No paper
 Manny,1,1,0,1,0,0,No rock
