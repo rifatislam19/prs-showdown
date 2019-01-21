@@ -1,1 +1,60 @@
-<svg xmlns="http://www.w3.org/2000/svg" data-name="Warstwa 1" viewBox="0 0 100 100" x="0px" y="0px"><title>hand_earth</title><path d="M63.63,78H63V73.17L57.83,68h-10l-8.32-8.32-4.35-1.42L24,60H6V80H23.17l14,14H62.41L86,83.32V76.56l-7-5ZM82,80.68,61.59,90H38.83l-14-14H10V64H24.13l10.7-1.64,2.53.83L46.17,72h10L59,74.83V78H44.83l-5.41-5.41-2.83,2.83L43.17,82H64.37l14-5.93L82,78.63Z"></path><path d="M59.7,7.48,39,28.17V49l16.37,13.1,25.71-2.14L90,47.65V25.88ZM86,44.19l-16.51-3L65.31,29.52,74,20.84l12,7.29ZM60.3,12.52,70.47,18.7,62.17,27H45.83ZM43,31H61.59l4.18,11.7L55.59,57.11,43,47ZM78.92,56.08,60.11,57.65,68.9,45.19,84.77,48Z"></path></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   data-name="Warstwa 1"
+   viewBox="0 0 100 100"
+   x="0px"
+   y="0px"
+   version="1.1"
+   id="svg3139"
+   sodipodi:docname="the_magician_rock.svg"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06">
+  <metadata
+     id="metadata3145">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3143" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="640"
+     inkscape:window-height="480"
+     id="namedview3141"
+     showgrid="false"
+     inkscape:zoom="2.36"
+     inkscape:cx="65.87839"
+     inkscape:cy="50"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg3139" />
+  <title
+     id="title3133">hand_earth</title>
+  <path
+     d="M63.63,78H63V73.17L57.83,68h-10l-8.32-8.32-4.35-1.42L24,60H6V80H23.17l14,14H62.41L86,83.32V76.56l-7-5ZM82,80.68,61.59,90H38.83l-14-14H10V64H24.13l10.7-1.64,2.53.83L46.17,72h10L59,74.83V78H44.83l-5.41-5.41-2.83,2.83L43.17,82H64.37l14-5.93L82,78.63Z"
+     id="path3135" />
+  <path
+     d="M59.7,7.48,39,28.17V49l16.37,13.1,25.71-2.14L90,47.65V25.88ZM86,44.19l-16.51-3L65.31,29.52,74,20.84l12,7.29ZM60.3,12.52,70.47,18.7,62.17,27H45.83ZM43,31H61.59l4.18,11.7L55.59,57.11,43,47ZM78.92,56.08,60.11,57.65,68.9,45.19,84.77,48Z"
+     id="path3137"
+     style="fill:#784421" />
+</svg>

@@ -1,5 +1,9 @@
 name,gamesPlayed,wins,losses,paper,rock,scissors,password
+<<<<<<< HEAD
 mario,0,0,0,0,0,0,mario
+=======
+mario,29,6,9,2,11,16,mario
+>>>>>>> b0b6a920e39b42e5942427cc1c70bc774e22592a
 luigi,0,0,0,0,0,0,luigi
 wario,0,0,0,0,0,0,wario
 waluigi,0,0,0,0,0,0,waluigi
