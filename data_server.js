@@ -136,12 +136,7 @@ app.get('/:user/results', function(request, response){
       weapon: request.query.weapon,
       villain_choice: request.query.villain_choice
   };//object of relevant user information from parameters
-  if(user_data["weapon"]==" "||user_data["villain_choice"]==" "){
-      response.status(200);
-      response.setHeader('Content-Type', 'text/html')
-      response.render('game', {user:user_data,villain:villain_data, message3:true});
-  }//if you do not choose a weapon or villain, the game will not load
-  else{
+
     var users_file=fs.readFileSync('data/users.csv','utf8');//converts users csv to a string
     var rows = users_file.split('\n');//generates array of stringified user objects
     var user_info = [];//array which will hold objectified users
@@ -303,7 +298,7 @@ app.get('/:user/results', function(request, response){
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render('results', {user:user_data,user_info:user_info,villain_data:villain_data,villain_throw:villain_throw, type:type});
-  }
+
 });
 
 app.get('/rules', function(request, response){

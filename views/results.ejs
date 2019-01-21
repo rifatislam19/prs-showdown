@@ -9,6 +9,10 @@
   <% include global/header.ejs %>
 
   <div>
+    <% if(user.weapon=="blank"||user.villain_choice=="blank"){ %>
+      <h2> Please choose a weapon and villain! </h2>
+      <a href="/login?player_name=<%=user.name%>&player_password=<%=user.password%>"> Go back </a>
+    <% } else {  %>
     <h2> Game Results </h2>
 
     <% if (user.weapon=="paper") { %>
@@ -17,8 +21,6 @@
       <img src="../images/rock.png" style="width:200px;height:200px;"/>
     <% } else if (user.weapon=="scissors") { %>
       <img src="../images/scissors.png" style="width:200px;height:200px;"/>
-    <% } else { %>
-      <%= "This shouldn't be here" %>
     <% } %>
 
     <% if (user.villain_choice=="Boss"){ %>
@@ -95,6 +97,7 @@
       <h2><%=user.villain_choice%> wins!</h2>
     <%}%>
     <a href="/login?player_name=<%=user.name%>&player_password=<%=user.password%>"> Play again </a>
+  <%}%>
   </div>
   <br>
   <% include global/footer.ejs %>

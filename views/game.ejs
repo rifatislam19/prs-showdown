@@ -19,12 +19,14 @@
       <form action="<%=user.name%>/results" method="get">
         Enter your choice of weapon:<br>
         <select name="weapon">
+          <option value="blank"></option>
           <option value="paper">Paper</option>
           <option value="rock">Rock</option>
           <option value="scissors">Scissors</option>
         </select><br><br>
         Choose your opponent<br>
         <select name="villain_choice">
+          <option value="blank"></option>
           <%for (var i=0; i< villain.length; i ++){%>
             <option value=<%=villain[i].name%>> <%=villain[i].name%> </option>
           <%}%>
