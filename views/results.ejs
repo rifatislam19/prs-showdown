@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>P,R,S - Game</title>
-  <link rel="stylesheet" href="styles/style.css">
+  <title>P,R,S - Results</title>
+  <link rel="stylesheet" href="../styles/style.css">
  </head>
 
 <body>
   <% include global/header.ejs %>
+
+  <div>
+    <h2> Game Results </h2>
+
+    <% if (user.weapon=="paper") { %>
+      <img src="../images/paper.png" style="width:200px;height:200px;"/>
+    <% } else if (user.weapon=="rock") { %>
+      <img src="../images/rock.png" style="width:200px;height:200px;"/>
+    <% } else if (user.weapon=="scissors") { %>
+      <img src="../images/scissors.png" style="width:200px;height:200px;"/>
+    <% } else { %>
+      <%= "This shouldn't be here" %>
+    <% } %>
 
     <% if (user.villain_choice=="Boss"){ %>
       <img src="../images/the_boss_rock.svg" style="width:200px;height:200px;"/>
@@ -75,16 +88,6 @@
         <img src="../images/gato_scissors.svg" style="width:200px;height:200px;"/>
       <% }} %>
 
-    <% if (user.weapon=="paper") { %>
-    	<img src="../images/paper.png" style="width:200px;height:200px;"/>
-    <% } else if (user.weapon=="rock") { %>
-    	<img src="../images/rock.png" style="width:200px;height:200px;"/>
-    <% } else if (user.weapon=="scissors") { %>
-    	<img src="../images/scissors.png" style="width:200px;height:200px;"/>
-    <% } else { %>
-  <%= "This shouldn't be here" %>
-    <% } %>
-
     <h2><%=user.name%> threw <%=user.weapon%>. <%=user.villain_choice%> threw <%=villain_throw%>.</h2>
     <% if (type=="tie") {%>
       <h2>It's a tie!</h2>
@@ -93,9 +96,9 @@
     <%} else if (type=="loss") {%>
       <h2><%=user.villain_choice%> wins!</h2>
     <%}%>
-
-    <h3> Go back to play again! </h3>
-
+    <a href="/login?player_name=<%=user.name%>&player_password=<%=user.password%>"> Play again </a>
+  </div>
+  <br>
   <% include global/footer.ejs %>
   <script src="scripts/scripts.js"></script>
  </body>

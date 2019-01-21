@@ -21,6 +21,7 @@
         <th class="top_row">Percent Paper</th>
         <th class="top_row">Percent Rock</th>
         <th class="top_row">Percent Scissors</th>
+        <th class="top_row">Percent Won</th>
       </tr>
       <%for(var i=0; i< user.length; i++){%>
       <tr>
@@ -33,10 +34,12 @@
           <td> <%= (parseInt(100*user[i]["paper"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
           <td> <%= (parseInt(100*user[i]["rock"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
           <td> <%= (parseInt(100*user[i]["scissors"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
+          <td> <%= (parseInt(100*user[i]["wins"]/user[i]["gamesPlayed"])).toString()+"%" %> </td>
         <%}  else{ %>
-            <td>N/A</td>
-            <td>N/A</td>
-            <td>N/A</td>
+            <td>0%</td>
+            <td>0%</td>
+            <td>0%</td>
+            <td>0%</td>
           <% }} %>
     </tr>
     </table>
@@ -52,11 +55,17 @@
         <th class="top_row">Percent Paper</th>
         <th class="top_row">Percent Rock</th>
         <th class="top_row">Percent Scissors</th>
+        <th class="top_row">Percent Won</th>
         <th class="top_row">Strategy Used</th>
       </tr>
 
-      <% var newVillains = villain.sort(function(a, b){ return a.wins - b.wins; }); %>
-      <%for(var k=newVillains.length-1; k>=0; k--){%>
+      <% var newVillains = villain.sort(function(a, b){ %>
+        <% var aVal = 0; %>
+        <% var bVal = 0; %>
+        <% if (a.gamesPlayed!=0) {aVal = a.wins/a.gamesPlayed;} %>
+        <% if (b.gamesPlayed!=0) {bVal = b.wins/b.gamesPlayed;} %>
+        <% return aVal - bVal; }); %>
+      <% for(var k=newVillains.length-1; k>=0; k--){%>
       <tr>
         <td> <%= newVillains[k]["name"]%> </td>
         <td> <%= newVillains[k]["gamesPlayed"]%> </td>
@@ -67,10 +76,12 @@
           <td> <%= (parseInt(100*newVillains[k]["paper"]/newVillains[k]["gamesPlayed"])).toString()+"%" %> </td>
           <td> <%= (parseInt(100*newVillains[k]["rock"]/newVillains[k]["gamesPlayed"])).toString()+"%" %> </td>
           <td> <%= (parseInt(100*newVillains[k]["scissors"]/newVillains[k]["gamesPlayed"])).toString()+"%" %> </td>
+          <td> <%= (parseInt(100*newVillains[k]["wins"]/newVillains[k]["gamesPlayed"])).toString()+"%" %> </td>
         <%} else{ %>
-          <td>N/A</td>
-          <td>N/A</td>
-          <td>N/A</td>
+          <td>0%</td>
+          <td>0%</td>
+          <td>0%</td>
+          <td>0%</td>
         <% } %>
         <td> <%= newVillains[k]["strategy"]%> </td>
       <% } %>

@@ -136,7 +136,7 @@ app.get('/:user/results', function(request, response){
       weapon: request.query.weapon,
       villain_choice: request.query.villain_choice
   };//object of relevant user information from parameters
-  if(user_data["weapon"]==""||user_data["villain_choice"]==""){
+  if(user_data["weapon"]==" "||user_data["villain_choice"]==" "){
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
       response.render('game', {user:user_data,villain:villain_data, message3:true});
@@ -253,10 +253,10 @@ app.get('/:user/results', function(request, response){
       }
       //adds a win tally for villain
     }
-
     for(i=0;i<user_info.length;i++){
       if(user_info[i]["name"]==user_data.name){
         user_info[i]["gamesPlayed"]++;
+        user_data.password = user_info[i]["password"];//first time in loop where password can be taken from csv for linking back to page
         if(user_data.weapon=="paper"){ user_info[i]["paper"]++; }
         if(user_data.weapon=="rock"){ user_info[i]["rock"]++; }
         if(user_data.weapon=="scissors"){ user_info[i]["scissors"]++; }
@@ -272,9 +272,6 @@ app.get('/:user/results', function(request, response){
       }
       //updates choice and games played attributes for users
     }
-
-    //here would be where to sort users
-
     var new_user_data = "name,gamesPlayed,wins,losses,paper,rock,scissors,password\n";
     for(i=0; i<user_info.length; i++){
       new_user_data += user_info[i]["name"] + ",";
@@ -287,12 +284,8 @@ app.get('/:user/results', function(request, response){
       new_user_data += user_info[i]["password"];
       new_user_data += "\n";
     }
-
     fs.writeFileSync('data/users.csv', new_user_data,'utf8');
     //rewrites new user information to csv file
-
-    //here would be where to sort villains
-
     var new_villain_data = "name,gamesPlayed,wins,losses,paper,rock,scissors,strategy\n";
     for(i=0; i<villain_data.length; i++){
       new_villain_data += villain_data[i]["name"] + ",";
