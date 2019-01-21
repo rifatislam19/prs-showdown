@@ -1,7 +1,8 @@
 name,gamesPlayed,wins,losses,paper,rock,scissors,password
-Mario,0,0,0,0,0,0,Mario
+Mario,1,1,0,0,0,1,Mario
 Luigi,0,0,0,0,0,0,Luigi
 Wario,0,0,0,0,0,0,Wario
 Waluigi,0,0,0,0,0,0,Waluigi
 Rifat,0,0,0,0,0,0,Rifat
 Steve,0,0,0,0,0,0,Steve
+mario,40,6,16,24,3,13,mario

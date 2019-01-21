@@ -28,12 +28,33 @@
           <option value="scissors">Scissors</option>
         </select><br><br>
         Choose your opponent<br>
-        <select name="villain_choice">
+        <select onchange="myFunction()" id="villain_choice" name="villain_choice">
           <option value="blank"></option>
           <%for (var i=0; i< villain.length; i ++){%>
             <option value=<%=villain[i].name%>> <%=villain[i].name%> </option>
           <%}%>
-        </select><br><br>
+        </select>
+        <br><br>
+        <img src=" " id="waiting_hand" style="width:200px;height:200px;">
+        <script>
+        function myFunction() {
+          var dropdown_choice = document.getElementById("villain_choice").value;
+          if(dropdown_choice=="Boss"){ document.getElementById("waiting_hand").src = "../images/the_boss_waiting.svg"; }
+          else if(dropdown_choice=="Bones"){ document.getElementById("waiting_hand").src = "../images/bones_waiting.svg"; }
+          else if(dropdown_choice=="Comic"){ document.getElementById("waiting_hand").src = "../images/comic_hans_waiting.svg"; }
+          else if(dropdown_choice=="Gato"){ document.getElementById("waiting_hand").src = "../images/gato_waiting.svg"; }
+          else if(dropdown_choice=="Harry"){ document.getElementById("waiting_hand").src = "../images/harry_waiting.svg"; }
+          else if(dropdown_choice=="Manny"){ document.getElementById("waiting_hand").src = "../images/manny_waiting.svg"; }
+          else if(dropdown_choice=="Mickey"){ document.getElementById("waiting_hand").src = "../images/mickey_waiting.svg"; }
+          else if(dropdown_choice=="Mr"){ document.getElementById("waiting_hand").src = "../images/mr_modern_waiting.svg"; }
+          else if(dropdown_choice=="Pixie"){ document.getElementById("waiting_hand").src = "../images/pixie_waiting.svg"; }
+          else if(dropdown_choice=="Regal"){ document.getElementById("waiting_hand").src = "../images/regal_waiting.svg"; }
+          else if(dropdown_choice=="Spock"){ document.getElementById("waiting_hand").src = "../images/spock_waiting.svg"; }
+          else if(dropdown_choice=="Boss"){ document.getElementById("waiting_hand").src = "../images/the_boss_waiting.svg"; }
+          else if(dropdown_choice=="Magician"){ document.getElementById("waiting_hand").src = "../images/the_magician_waiting.svg"; }
+        }
+        </script>
+        <br><br>
         <button type = "submit" id="throw_choice_button">Throw Choice</button>
       </form>
 

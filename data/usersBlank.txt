@@ -1,9 +1,0 @@
-Below is a template for blank users.csv to reset with testing:
-
-name,gamesPlayed,wins,losses,paper,rock,scissors,password
-Mario,0,0,0,0,0,0,Mario
-Luigi,0,0,0,0,0,0,Luigi
-Wario,0,0,0,0,0,0,Wario
-Waluigi,0,0,0,0,0,0,Waluigi
-Rifat,0,0,0,0,0,0,Rifat
-Steve,0,0,0,0,0,0,Steve
