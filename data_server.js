@@ -11,7 +11,6 @@ app.use(favicon(__dirname + '/public/images/logo.png'));//favicon logo access
 var port = process.env.PORT || 8000;
 app.listen(port);
 
-
 var count = 0;//strategy component for specific villain Gato
 
 app.get('/', function(request, response){
