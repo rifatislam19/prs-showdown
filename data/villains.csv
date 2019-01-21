@@ -1,10 +1,8 @@
-Below is a template for blank villains.csv to reset with testing:
-
 name,gamesPlayed,wins,losses,paper,rock,scissors,strategy
 Boss,0,0,0,0,0,0,Always rock
 Spock,0,0,0,0,0,0,Always scissors
 Regal,0,0,0,0,0,0,Always paper
-Mickey,0,0,0,0,0,0,Always ties
+Mickey,1,0,0,1,0,0,Always ties
 Magician,0,0,0,0,0,0,Always wins
 Bones,0,0,0,0,0,0,Always loses
 Pixie,0,0,0,0,0,0,Evenly split
