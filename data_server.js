@@ -8,10 +8,9 @@ app.set('views', __dirname + '/views');//assigns views folder
 app.set('view engine', 'ejs');
 app.use(favicon(__dirname + '/public/images/logo.png'));//favicon logo access
 
-var port = 3000;//local host number
-app.listen(port, function(){
-  console.log('Server started at '+ new Date()+', on port ' + port+'!');
-});//console confirmation of established server
+var port = process.env.PORT || 8000;
+app.listen(port);
+
 
 var count = 0;//strategy component for specific villain Gato
 
