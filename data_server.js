@@ -248,24 +248,26 @@ app.get('/:user/results', function(request, response){
       }
       //adds a win tally for villain
     }
-    for(i=0;i<user_info.length;i++){
-      if(user_info[i]["name"]==user_data.name){
-        user_info[i]["gamesPlayed"]++;
-        user_data.password = user_info[i]["password"];//first time in loop where password can be taken from csv for linking back to page
-        if(user_data.weapon=="paper"){ user_info[i]["paper"]++; }
-        if(user_data.weapon=="rock"){ user_info[i]["rock"]++; }
-        if(user_data.weapon=="scissors"){ user_info[i]["scissors"]++; }
+    if(user_data.weapon!="blank"&&user_data.villain_choice!="blank"){
+      for(i=0;i<user_info.length;i++){
+        if(user_info[i]["name"]==user_data.name){
+          user_info[i]["gamesPlayed"]++;
+          user_data.password = user_info[i]["password"];//first time in loop where password can be taken from csv for linking back to page
+          if(user_data.weapon=="paper"){ user_info[i]["paper"]++; }
+          if(user_data.weapon=="rock"){ user_info[i]["rock"]++; }
+          if(user_data.weapon=="scissors"){ user_info[i]["scissors"]++; }
+        }
+        //updates choice and games played attributes for users
       }
-      //updates choice and games played attributes for users
-    }
-    for(i=0;i<villain_data.length;i++){
-      if(villain_data[i]["name"]==user_data.villain_choice){
-        villain_data[i]["gamesPlayed"]++;
-        if(villain_throw=="paper"){ villain_data[i]["paper"]++; }
-        if(villain_throw=="rock"){ villain_data[i]["rock"]++; }
-        if(villain_throw=="scissors"){ villain_data[i]["scissors"]++; }
+      for(i=0;i<villain_data.length;i++){
+        if(villain_data[i]["name"]==user_data.villain_choice){
+          villain_data[i]["gamesPlayed"]++;
+          if(villain_throw=="paper"){ villain_data[i]["paper"]++; }
+          if(villain_throw=="rock"){ villain_data[i]["rock"]++; }
+          if(villain_throw=="scissors"){ villain_data[i]["scissors"]++; }
+        }
+        //updates choice and games played attributes for users
       }
-      //updates choice and games played attributes for users
     }
     var new_user_data = "name,gamesPlayed,wins,losses,paper,rock,scissors,password\n";
     for(i=0; i<user_info.length; i++){
