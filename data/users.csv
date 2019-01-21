@@ -1,5 +1,5 @@
 name,gamesPlayed,wins,losses,paper,rock,scissors,password
-mario,0,0,0,0,0,0,mario
+mario,5,1,2,2,2,1,mario
 luigi,0,0,0,0,0,0,luigi
 wario,0,0,0,0,0,0,wario
 waluigi,0,0,0,0,0,0,waluigi
