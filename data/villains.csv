@@ -1,12 +1,12 @@
 name,gamesPlayed,wins,losses,paper,rock,scissors,strategy
-Boss,1,0,0,0,1,0,Always rock
+Boss,0,0,0,0,0,0,Always rock
 Spock,0,0,0,0,0,0,Always scissors
 Regal,0,0,0,0,0,0,Always paper
-Mickey,3,0,0,3,0,0,Always ties
+Mickey,0,0,0,0,0,0,Always ties
 Magician,0,0,0,0,0,0,Always wins
 Bones,0,0,0,0,0,0,Always loses
 Pixie,0,0,0,0,0,0,Evenly split
-Harry,4,2,2,4,0,0,No scissors
+Harry,0,0,0,0,0,0,No scissors
 Mr Modern,0,0,0,0,0,0,No paper
 Manny,0,0,0,0,0,0,No rock
 Comic Hans,0,0,0,0,0,0,Tells the time

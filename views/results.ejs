@@ -91,13 +91,13 @@
         <img src="../images/gato_scissors.svg" style="width:200px;height:200px;"/>
       <% }} %>
 
-    <h2><%=user.name%> threw <%=user.weapon%>. <%=user.villain_choice%> threw <%=villain_throw%>.</h2>
+    <h3><%=user.name%> threw <%=user.weapon%>. <%=user.villain_choice%> threw <%=villain_throw%>.</h2>
     <% if (type=="tie") {%>
-      <h2>It's a tie!</h2>
+      <h3>It's a tie!</h3>
     <%} else if (type=="win") {%>
-      <h2><%=user.name%> wins!</h2>
+      <h3><%=user.name%> wins!</h3>
     <%} else if (type=="loss") {%>
-      <h2><%=user.villain_choice%> wins!</h2>
+      <h3><%=user.villain_choice%> wins!</h3>
     <%}%>
     <a href="/login?player_name=<%=user.name%>&player_password=<%=user.password%>"> Play again </a>
   <%}%>
