@@ -7,7 +7,10 @@
 
 <body>
   <% include global/header.ejs %>
-
+  <p>
+  <form action="/" method="get">
+    <button type="submit" id = "log_out_button">Log out</button>
+  </form>
   <div>
     <% if(user.weapon=="blank"||user.villain_choice=="blank"){ %>
       <h2> Please choose a weapon and villain! </h2>

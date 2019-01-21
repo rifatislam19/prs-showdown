@@ -7,7 +7,10 @@
 
 <body>
   <% include global/header.ejs %>
-
+  <p>
+  <form action="/" method="get">
+    <button type="submit" id = "log_out_button">Log out</button>
+  </form>
   <% if (message3) { %>
   <div id="feedback" class="visible">
     <p>Enter weapon and villain choice!</p>
@@ -33,6 +36,7 @@
         </select><br><br>
         <button type = "submit" id="throw_choice_button">Throw Choice</button>
       </form>
+
     </div>
   <% include global/footer.ejs %>
   <script src="scripts/scripts.js"></script>
